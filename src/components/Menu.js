@@ -104,6 +104,7 @@ class Menu extends Component {
 }
 const styles = StyleSheet.create({
     menu:{
+        flex: 1,
         width: width,
         height: height,
         backgroundColor: '#191919',

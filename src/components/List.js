@@ -101,7 +101,7 @@ export default class List extends Component {
                     <Text style={styles.text}>My Movies List</Text>
                     <FlatList 
                         horizontal
-                        ItemSeparatorComponent={ () => <View style={ { width: 5, height: 10, backgroundColor: 'red' } } /> }
+                        ItemSeparatorComponent={ () => <View style={ { width: 5, height: 10 } } /> }
                         renderItem={({item}) => this._renderItem(item)}
                         data={show_first}
                     />
@@ -110,7 +110,7 @@ export default class List extends Component {
                     <Text style={styles.text}>My Series List</Text>
                     <FlatList 
                         horizontal
-                        ItemSeparatorComponent={ () => <View style={ { width: 5, height: 10, backgroundColor: 'red' } } /> }
+                        ItemSeparatorComponent={ () => <View style={ { width: 5, height: 10, } } /> }
                         renderItem={({item}) => this._renderItem(item)}
                         data={show_second}
                     />
