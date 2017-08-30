@@ -3,7 +3,7 @@ import {
     Text, 
     View, 
     StyleSheet,
-    TouchableNativeFeedback,
+    TouchableWithoutFeedback,
     Image
 } from 'react-native';
 
@@ -11,19 +11,21 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 
 const Header = props =>(
             <View style={styles.container}>
-                <TouchableNativeFeedback onPress={()=> props.toggle()}>
+                <TouchableWithoutFeedback onPress={()=> props.toggle()}>
                     <Icon 
                         name='bars'
                         color='#fff'
                         size={25}
                     />
-                </TouchableNativeFeedback>
+                </TouchableWithoutFeedback>
                 <Image source={require('../Images/logo.png')} style={styles.logo}/>
-                <Icon 
-                  name='search'
-                  color='#fff'
-                  size={25}
-                />
+                <TouchableWithoutFeedback onPress={() => props.navigation.navigate('Search', {})}>
+                    <Icon 
+                    name='search'
+                    color='#fff'
+                    size={25}
+                    />
+                </TouchableWithoutFeedback>
             </View>        
 )
 const styles = StyleSheet.create({

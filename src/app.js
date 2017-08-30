@@ -11,6 +11,7 @@ class App  extends Component {
             isOpen: false,
         }
     }
+    
     toggle(){
         this.setState({
             isOpen: !this.state.isOpen
@@ -28,10 +29,10 @@ class App  extends Component {
                     isOpen={this.state.isOpen}
                     onChange={(isOpen) => this.updateMenu(isOpen)}
                 >
-                    <View  style={[styles.conatiner,{flex: 1}]}>
-                        <Header toggle={this.toggle.bind(this)}/>
-                        <List />
-                    </View>
+                <View  style={[styles.conatiner,{flex: 1}]}>
+                    <Header toggle={this.toggle.bind(this)} navigation={this.props.navigation}/>
+                    <List navigation={this.props.navigation}/>
+                </View>
                 </SideMenu>
         );
     }
