@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 
 import{
     View,
@@ -6,44 +6,37 @@ import{
 } from 'react-native';
 import Episode from './Episodes';
 import Trailers from './Trailers';
-import {TabViewAnimated, TabBar, SceneMap} from 'react-native-tab-view'
-const FirstRoute = () => <Episode />
-const SecondRoute = () => <Trailers />
-export default class TabEpisodes extends Component {
-    state = {
-        index: 0,
-        routes: [
-          { key: '1', title: 'Episodes' },
-          { key: '2', title: 'Trailers' },
-        ],
-      };
-    _handleChangeTab(index){
-        this.setState({
-            index
-        })
-    }
-    _renderHeader(props){
-        return <TabBar {...props} />
-    }
-    _renderScene = SceneMap({
-        '1': FirstRoute,
-        '2': SecondRoute,
-    })
+import {Tab, Tabs} from 'native-base'
+export default class TabEpisodes extends PureComponent {
     
     render() {
         return(
-            <TabViewAnimated 
-                styles={styles.container}
-                navigationState={this.state}
-                renderScene={this._renderScene}
-                renderHeader={this._renderHeader}
-                onIndexChange={this._handleChangeTab.bind(this)}
-            />
+                <Tabs tabBarUnderlineStyle={styles.underline}>
+                    <Tab  tabStyle={styles.tab} activeTabStyle={styles.activeTab} heading='Episodes'>
+                        <Episode 
+                            episodes={this.props.data} 
+                            currentSeason={this.props.currentSeason}
+                            season={this.props.season}
+                            navigation={this.props.navigation}
+                            getSeason={this.props.getSeason}
+                        />
+                    </Tab>
+                    <Tab tabStyle={styles.tab} activeTabStyle={styles.activeTab} heading='Trailers'>
+                        <Trailers />
+                    </Tab>
+                </Tabs>
         );
     }
 }
 const styles = StyleSheet.create({
-    container:{
-        flex: 1
-    }
+    tab:{
+        backgroundColor: '#181818',
+    },
+    activeTab:{
+        backgroundColor: 'transparent',
+    },
+    underline:{
+        top: 0,
+        backgroundColor: 'red'
+    },
 })
