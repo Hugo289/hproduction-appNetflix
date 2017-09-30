@@ -45,7 +45,6 @@ export default class Details extends Component {
         })
     }
     render() {
-        console.log(this.state.currentSeason)
         const headerNameToggle=this.state.scrollY.interpolate({
             inputRange : [this.state.measuresTitle, this.state.measuresTitle + 1],
             outputRange: [0, 1]
@@ -74,13 +73,27 @@ export default class Details extends Component {
                        transform: [{translateY: 0}, {translateX: headerSeasonHide}]
                     }]}
                >
+               {season==1 ?
+                <TouchableHighlight>
+                   <Text style={styles.textHeader}> Season {this.state.currentSeason}</Text>
+               </TouchableHighlight> 
+               :
                <TouchableHighlight onPress={() => this.props.navigation.navigate('EpisodePicker',{
                         getSeason: this.getSeason.bind(this),
                         seasons: season,
                         currentSeason: this.state.currentSeason
                    })}>
-                   <Text style={styles.textHeader}> Season {this.state.currentSeason}</Text>
+                   <View style={styles.headerWithIcon}>
+                        <Text style={styles.textHeader}> Season {this.state.currentSeason}</Text>
+                        <Icon 
+                                style={styles.iconDown}
+                                name='chevron-down'
+                                color='#fff'
+                                size={15}
+                        />
+                    </View>
                </TouchableHighlight>
+               }
                </Animated.View>
                
                 <Animated.ScrollView 
@@ -260,5 +273,13 @@ const styles = StyleSheet.create({
     textHeader:{
         color: '#fff',
         fontSize: 20,
+    },
+    headerWithIcon:{
+        flexDirection: 'row',
+        alignItems: 'center',
+    },
+    iconDown:{
+        marginLeft: 5,
     }
+
 })

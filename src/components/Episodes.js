@@ -59,8 +59,8 @@ export default class Episodes extends Component {
             <View style={styles.container}>
                 {this.props.season == 1 ? 
                 <TouchableWithoutFeedback>
-                    <View>
-                        <Text> Season {this.props.currentSeason}</Text>
+                    <View style={styles.buttonWithIcon}>
+                        <Text style={styles.butttonText}> Season {this.props.currentSeason}</Text>
                     </View>
                 </TouchableWithoutFeedback>
                 :
@@ -68,8 +68,9 @@ export default class Episodes extends Component {
                         getSeason: this.props.getSeason, seasons: this.props.season, currentSeason: this.props.currentSeason
                     })}>
                     <View style={styles.buttonWithIcon}>
-                        <Text> Season {this.props.currentSeason}</Text>
+                        <Text style={styles.butttonText}> Season {this.props.currentSeason}</Text>
                         <Icon 
+                        style={styles.iconDown}
                             name='chevron-down'
                             color='#fff'
                             size={10}
@@ -77,7 +78,9 @@ export default class Episodes extends Component {
                     </View>
                 </TouchableWithoutFeedback> 
                }
-                {this._renderEpisodes()}
+                <View style={styles.renderEpisodes}>
+                    {this._renderEpisodes()}
+                </View>
             </View>
         );
     }
@@ -87,7 +90,18 @@ const styles= StyleSheet.create({
         backgroundColor: '#181818',
     },
     buttonWithIcon:{
-        flexDirection: 'row'
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginTop: 10,
+    },
+    butttonText:{
+        color: '#fff'
+    },
+    renderEpisodes:{
+        marginTop: 10,
+    },
+    iconDown:{
+        marginLeft: 5,
     },
     image:{
         width: 150,

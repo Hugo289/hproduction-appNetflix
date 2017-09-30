@@ -8,6 +8,6 @@ import React, { Component } from 'react';
 import {
   AppRegistry,
 } from 'react-native';
-import App from './src/indexApp';
+import App from './src/';
 
 AppRegistry.registerComponent('NetflixApp', () => App);
